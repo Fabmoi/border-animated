@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="box-with-border-animated">
+        <div>
+          <span class="text">Passer le curseur ici</span>
+          <span class="border-line border-right"></span>
+          <span class="border-line border-top"></span>
+          <span class="border-line border-left"></span>
+          <span class="border-line border-bottom"></span>
+        </div>
+    </section>
+      
+    <style type="text/css">
+body {
+  background: rgb(150,150,150);
+}
+.text {
+  padding: 12px 14.4px;                                                                     /* AJUSTER LE TEXTE POUR AVOIR BORDURE AUX BORDS */
+  font-size: 24px;                                                                                    
+  display: block;                                                                           /* PERMET LE DÉPLACEMENT DU TEXTE */
+  transform: translate3d(0,12px,0);
+  transition: transform 0.2s cubic-bezier(0.2,0,0,0.2) 0.2s;
+}
+.box-with-border-animated {
+  width: 260px;
+  height: 63px;
+  margin: auto;
+  background: rgb(0,0,0);
+}
+div {
+  border: 3px solid transparent;
+  color: rgb(255,255,255);
+  position: relative;
+  display: inline-block;                                                                    /* PLACE LE TEXTE DANS LA BOITE */
+  cursor: pointer;
+}
+.text:hover,
+.text:active {                                                                              /* BOUGE LE TEXTE AU SURVOL */
+  transform: translate3d(0,0,0);
+}
+div:after {                                                                                 /* BARRE VERTE VISIBLE EN BAS */
+  height: 3px;
+  background: rgb(0,255,0);
+  position: absolute;
+  bottom: -3px;
+  left: 12px;
+  right: 12px;
+  transition: transform 0.8s cubic-bezier(1,0,0.4,1) 0.2s,                                  /* REMISE EN PLACE BARRE VERTE VISIBLE EN BAS */
+                  right 0.6s cubic-bezier(0.1,0.5,0,1) 0.2s,
+                   left 0.4s cubic-bezier(0.1,0.5,0,1) 0.6s;
+  transform-origin: left;                                                                   /* DEPUIS LA GAUCHE */
+  content: "";
+}
+.border-line {                                                                              /* CHAQUE BORDURE */
+  position: absolute;
+  background: rgb(0,255,0);
+}
+.border-right, 
+.border-left {
+  width: 3px;
+  bottom: -3px;
+  top: -3px;
+  transform: scale3d(2,0,1);                                                                /* GROSSISSEMENT DROITE ET GAUCHE AU SURVOL */
+}
+.border-top, 
+.border-bottom {
+  height: 3px;
+  left: -3px;
+  right: -3px;
+  transform: scale3d(0,2,1);                                                                /* GROSSISSEMENT HAUT ET BAS AU SURVOL */
+}
+.border-right {                                                                             /* BORDURE DROITE */
+  right: -3px;
+  transition: transform 0.1s cubic-bezier(1,0,0.7,1) 0.2s;
+  transform-origin: top;
+}
+.border-top {                                                                               /* BORDURE HAUT */
+  top: -3px;
+  transition: transform 0.1s linear 0.4s;
+  transform-origin: left;
+}
+.border-left {                                                                              /* BORDURE GAUCHE */
+  left: -3px;
+  transition: transform 0.08s linear 0.5s;
+  transform-origin: bottom;
+}
+.border-bottom {                                                                            /* BORDURE BAS */
+  bottom: -3px;
+  transition: transform 0.3s cubic-bezier(1,0,0.7,1);
+  transform-origin: right;
+}
+div:hover:after,
+div:active:after {
+  right: -3px;
+  left: -3px;
+  transform: scale3d(0,1,1);
+  transform-origin: left;
+  transition: transform 0.2s cubic-bezier(1, 0, 0.65, 1.01) 0.17s,
+                   left 0.2s cubic-bezier(1, 0, 0.65, 1.01), 
+                  right 0s 0.3s;
+}
+div:hover .border-line,
+div:active .border-line {
+  transform: scale3d(1, 1, 1);
+}
+div:hover .border-left,
+div:active .border-left {                                                                   /* BAS VERS LA GAUCHE */
+  transition: transform 0.1s cubic-bezier(1, 0, 0.65, 1.01) 0.2s;
+  transform-origin: bottom;
+}
+div:hover .border-top,
+div:active .border-top {                                                                    /* GAUCHE VERS LE HAUT */
+  transition: transform 0.08s linear 0.4s;
+  transform-origin: left;
+}
+div:hover .border-right,
+div:active .border-right {                                                                  /* HAUT VERS LA DROITE */
+  transition: transform 0.08s linear 0.48s;
+  transform-origin: top;
+}
+div:hover .border-bottom,
+div:active .border-bottom {                                                                 /* DROITE VERS LE BAS */
+  transition: transform 0.5s cubic-bezier(0, 0.53, 0.29, 1) 0.56s;
+  transform-origin: right;
+}
+    </style>
+</body>
+</html>
